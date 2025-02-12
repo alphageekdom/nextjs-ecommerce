@@ -2,6 +2,7 @@
 CREATE TABLE "Cart" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "userId" UUID,
+    "sessionCartId" TEXT NOT NULL,
     "items" JSON[] DEFAULT ARRAY[]::JSON[],
     "itemsPrice" DECIMAL(12,2) NOT NULL,
     "totalPrice" DECIMAL(12,2) NOT NULL,
