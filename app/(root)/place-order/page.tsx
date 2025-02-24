@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import CheckoutSteps from "@/components/checkout-steps";
+import CheckoutSteps from "@/components/shared/checkout-steps";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {

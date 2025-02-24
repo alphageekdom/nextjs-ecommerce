@@ -3,7 +3,7 @@ import { generateAccessToken, paypal } from "../lib/paypal";
 // Test to generate PayPal access token
 test("generate token from paypal", async () => {
   const tokenResponse = await generateAccessToken();
-  console.log(tokenResponse);
+  // console.log(tokenResponse);
   expect(typeof tokenResponse).toBe("string");
   expect(tokenResponse.length).toBeGreaterThan(0);
 });
@@ -14,7 +14,7 @@ test("creates a paypal order", async () => {
   const price = 10.0;
 
   const orderResponse = await paypal.createOrder(price);
-  console.log(orderResponse);
+  // console.log(orderResponse);
 
   expect(orderResponse).toHaveProperty("id");
   expect(orderResponse).toHaveProperty("status");
@@ -30,7 +30,7 @@ test("simulate capturing a paypal payment from an order", async () => {
     .mockResolvedValue({ status: "COMPLETED" });
 
   const captureResponse = await paypal.capturePayment(orderId);
-  console.log(captureResponse);
+  // console.log(captureResponse);
   expect(captureResponse).toHaveProperty("status", "COMPLETED");
 
   mockCapturePayment.mockRestore();
