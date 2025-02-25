@@ -1,4 +1,4 @@
-("use server");
+"use server";
 
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { convertToPlainObject, formatError } from "../utils";
@@ -301,9 +301,9 @@ type SalesDataType = {
 // Get sales data and order summary
 export async function getOrderSummary() {
   // Get counts for each resource
-  const ordersCount = await prisma.product.count();
+  const ordersCount = await prisma.order.count();
   const productsCount = await prisma.product.count();
-  const usersCount = await prisma.product.count();
+  const usersCount = await prisma.user.count();
 
   // Calculate the total sales
   const totalSales = await prisma.order.aggregate({
@@ -313,7 +313,7 @@ export async function getOrderSummary() {
   // Get monthly sales
   const salesDataRaw = await prisma.$queryRaw<
     Array<{ month: string; totalSales: Prisma.Decimal }>
-  >`SELECT to_char("createdAt", 'MM/YY') as "month", sum("totalPrice") as "totalSales" FROM "Order" GROUP BY to_char("createdAT", 'MM/YY')`;
+  >`SELECT to_char("createdAt", 'MM/YY') as "month", sum("totalPrice") as "totalSales" FROM "Order" GROUP BY to_char("createdAt", 'MM/YY')`;
 
   const salesData: SalesDataType = salesDataRaw.map((entry) => ({
     month: entry.month,
