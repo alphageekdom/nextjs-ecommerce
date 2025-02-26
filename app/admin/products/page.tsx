@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllProducts } from "@/lib/actions/product.actions";
+import { getAllProducts, deleteProduct } from "@/lib/actions/product.actions";
 import { formatCurrency, formatId } from "@/lib/utils";
 import { requireAdmin } from "@/lib/auth-guard";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table";
 import { Pencil } from "lucide-react";
 import Pagination from "@/components/shared/paginations";
+import DeleteDialog from "@/components/shared/delete-dialog";
 
 const AdminProductPage = async (props: {
   searchParams: Promise<{ page: string; query: string; category: string }>;
@@ -74,6 +75,7 @@ const AdminProductPage = async (props: {
                   </Link>
                 </Button>
                 {/* DELETE BUTTON */}
+                <DeleteDialog id={product.id} action={deleteProduct} />
               </TableCell>
             </TableRow>
           ))}
