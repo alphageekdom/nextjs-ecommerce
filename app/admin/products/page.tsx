@@ -33,7 +33,7 @@ const AdminProductPage = async (props: {
     // limit: 2,
   });
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="space-y-2">
@@ -83,7 +83,7 @@ const AdminProductPage = async (props: {
           ))}
         </TableBody>
       </Table>
-      {products?.totalPages && products.totalPages > 1 && (
+      {products.totalPages > 1 && (
         <Pagination page={page} totalPages={products.totalPages} />
       )}
     </div>

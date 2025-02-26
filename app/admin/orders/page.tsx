@@ -37,7 +37,7 @@ const AdminOrdersPage = async (props: {
     // limit: 2,
   });
 
-  console.log(orders);
+  // console.log(orders);
 
   return (
     <div className="space-y-2">
