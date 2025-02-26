@@ -14,6 +14,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
+import { Trash2 } from "lucide-react";
 
 const DeleteDialog = ({
   id,
@@ -52,6 +53,7 @@ const DeleteDialog = ({
           variant="destructive"
           className="ml-2 hover:font-semibold"
         >
+          <Trash2 />
           Delete
         </Button>
       </AlertDialogTrigger>
@@ -70,6 +72,7 @@ const DeleteDialog = ({
             disabled={isPending}
             onClick={handleDeleteClick}
           >
+            <Trash2 />
             {isPending ? "Deleting..." : "Delete"}
           </Button>
         </AlertDialogFooter>
