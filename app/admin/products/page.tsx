@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Pencil } from "lucide-react";
+import { CirclePlus, Pencil } from "lucide-react";
 import Pagination from "@/components/shared/paginations";
 import DeleteDialog from "@/components/shared/delete-dialog";
 
@@ -40,7 +40,9 @@ const AdminProductPage = async (props: {
       <div className="flex-between">
         <h1 className="h2-bold">Products</h1>
         <Button asChild variant="default">
-          <Link href="/admin/products/create">Create Product</Link>
+          <Link href="/admin/products/create">
+            <CirclePlus /> Create Product
+          </Link>
         </Button>
       </div>
 
