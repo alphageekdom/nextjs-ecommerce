@@ -1,5 +1,6 @@
 import ProductCard from "@/components/shared/product/product-card";
 import { getAllProducts } from "@/lib/actions/product.actions";
+import { BaseFilterParams, getFilterUrl } from "@/lib/getFilterUrl";
 
 interface SearchParams {
   q?: string;
@@ -35,9 +36,22 @@ const SearchPage = async (props: SearchPageProps) => {
     page: Number(page),
   });
 
+  // Construct filter URL
+  const baseParams: BaseFilterParams = {
+    q,
+    category,
+    price,
+    rating,
+    sort,
+    page,
+  };
+
   return (
     <div className="grid md:grid-cols-5 md:gap-5">
-      <div className="filter-links">{/* FILTERS */}</div>
+      <div className="filter-links">
+        {/* FILTERS */}
+        URL: {getFilterUrl({ c: "Mens Sweat Shirts", baseParams })}
+      </div>
       <div className="space-y-4 md:col-span-4">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {products.data.length === 0 && (
