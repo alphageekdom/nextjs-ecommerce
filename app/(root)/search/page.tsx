@@ -6,6 +6,7 @@ import {
 } from "@/lib/actions/product.actions";
 import { BaseFilterParams, getFilterUrl } from "@/lib/get-filter-url";
 import Link from "next/link";
+import { generateMetadata as getSearchMetadata } from "@/lib/generate-dynamic-metadata";
 
 interface SearchParams {
   q?: string;
@@ -32,38 +33,20 @@ const ratings = [4, 3, 2, 1];
 
 const sortOrders = ["newest", "lowest", "highest", "rating"];
 
-export async function generateMetadata(props: {
-  searchParams: Promise<{
-    q: string;
-    category: string;
-    price: string;
-    rating: string;
-  }>;
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
 }) {
-  const {
-    q = "all",
-    category = "all",
-    price = "all",
-    rating = "all",
-  } = await props.searchParams;
-
-  const isQuerySet = q && q !== "all" && q.trim() !== "";
-  const isCategorySet =
-    category && category !== "all" && category.trim() !== "";
-  const isPriceSet = price && price !== "all" && price.trim() !== "";
-  const isRatingSet = rating && rating !== "all" && rating.trim() !== "";
-
-  if (isQuerySet || isCategorySet || isPriceSet || isRatingSet) {
-    return {
-      title: `
-      Search ${isQuerySet ? q : ""}
-       ${isCategorySet ? `: Category ${category}` : ""}
-       ${isPriceSet ? `: Price ${price}` : ""}
-       ${isRatingSet ? `: Rating ${rating}` : ""}`,
-    };
-  } else {
-    return { title: "Search Products" };
-  }
+  // Wrap searchParams in a Promise with defaults
+  return getSearchMetadata({
+    searchParams: Promise.resolve({
+      q: searchParams.q || "all",
+      category: searchParams.category || "all",
+      price: searchParams.price || "all",
+      rating: searchParams.rating || "all",
+    }),
+  });
 }
 
 const SearchPage = async (props: SearchPageProps) => {
