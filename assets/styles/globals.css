@@ -119,7 +119,3 @@ html.dark .upload-field .text-white {
 html.light .upload-field .text-white {
   color: #000000 !important;
 }
-
-.review-text {
-  white-space: nowrap;
-}
