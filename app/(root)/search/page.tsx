@@ -38,13 +38,14 @@ export async function generateMetadata({
 }: {
   searchParams: { [key: string]: string | undefined };
 }) {
+  const sp = searchParams;
   // Wrap searchParams in a Promise with defaults
   return getSearchMetadata({
     searchParams: Promise.resolve({
-      q: searchParams.q || "all",
-      category: searchParams.category || "all",
-      price: searchParams.price || "all",
-      rating: searchParams.rating || "all",
+      q: sp.q || "all",
+      category: sp.category || "all",
+      price: sp.price || "all",
+      rating: sp.rating || "all",
     }),
   });
 }
