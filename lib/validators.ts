@@ -25,7 +25,7 @@ export const insertProductSchema = z.object({
 
 // Schema for updating products
 export const updateProductSchema = insertProductSchema.extend({
-  id: z.string().min(1, "ID is required"),
+  id: z.string().min(1, "ID is required").optional(),
 });
 
 // Schema for signing users in
