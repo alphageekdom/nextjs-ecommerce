@@ -37,8 +37,10 @@ const ReviewList = ({
   }, [productId]);
 
   // Reload reviews after created or updated
-  const reload = () => {
-    console.log("Review submitted");
+  const reload = async () => {
+    const res = await getReviews({ productId });
+
+    setReviews([...res.data]);
   };
 
   return (
