@@ -14,6 +14,8 @@ import {
 } from "@react-email/components";
 import { Order } from "@/types";
 import { formatCurrency } from "@/lib/utils";
+import dotenv from "dotenv";
+dotenv.config();
 
 const dateFormatter = new Intl.DateTimeFormat("en", { dateStyle: "medium" });
 
