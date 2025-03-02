@@ -36,9 +36,9 @@ const sortOrders = ["newest", "lowest", "highest", "rating"];
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const sp = searchParams;
+  const sp = await searchParams;
   // Wrap searchParams in a Promise with defaults
   return getSearchMetadata({
     searchParams: Promise.resolve({
