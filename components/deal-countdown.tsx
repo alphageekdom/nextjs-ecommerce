@@ -18,7 +18,7 @@ const calculateTimeRemaining = (targetDate: Date) => {
     hours: Math.floor(
       (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
     ),
-    minutes: Math.floor((timeDifference % (100 * 60 * 60)) / (1000 * 60)),
+    minutes: Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)),
     seconds: Math.floor((timeDifference % (1000 * 60)) / 1000),
   };
 };
@@ -28,7 +28,7 @@ const DealCountdown = () => {
 
   useEffect(() => {
     //   Calculate initial time on client
-    calculateTimeRemaining(TARGET_DATE);
+    setTime(calculateTimeRemaining(TARGET_DATE));
 
     const timerInterval = setInterval(() => {
       const newTime = calculateTimeRemaining(TARGET_DATE);
