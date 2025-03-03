@@ -73,6 +73,14 @@ const OrderDetailsTable = ({
   };
 
   const handleCreatePayPalOrder = async () => {
+    if (!order?.id) {
+      toast({
+        variant: "destructive",
+        description: "Order ID is missing.",
+      });
+      return; // Prevent further execution
+    }
+
     const res = await createPayPalOrder(order.id);
 
     if (!res.success) {
@@ -80,9 +88,11 @@ const OrderDetailsTable = ({
         variant: "destructive",
         description: res.message,
       });
+
+      return;
     }
 
-    return res.data;
+    return res.data?.id;
   };
 
   const handleApprovePayPalOrder = async (data: { orderID: string }) => {
