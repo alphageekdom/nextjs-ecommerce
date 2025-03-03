@@ -92,7 +92,7 @@ const OrderDetailsTable = ({
       return;
     }
 
-    return res.data?.id;
+    return res.data;
   };
 
   const handleApprovePayPalOrder = async (data: { orderID: string }) => {
